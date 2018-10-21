@@ -118,7 +118,7 @@ void			LocalPlayer::doUpdate(float dt)
       wasPaused = true;
     }
     if (TimeKeeper::getTick() -  pauseTime > BZDB.eval(StateDatabase::BZDB_PAUSEDROPTIME)) {
-      server->sendDropFlag(getPosition());
+      server->sendDropFlag(getId(), getPosition());
       setStatus(getStatus() & ~PlayerState::FlagActive);
       pauseTime = TimeKeeper::getSunExplodeTime();
     }
@@ -156,7 +156,7 @@ void			LocalPlayer::doUpdate(float dt)
     flagShakingTime -= dt;
     if (flagShakingTime <= 0.0f) {
       flagShakingTime = 0.0f;
-      server->sendDropFlag(getPosition());
+      server->sendDropFlag(getId(), getPosition());
     }
   }
 }
@@ -825,7 +825,7 @@ void			LocalPlayer::doUpdateMotion(float dt)
       ((flagAntidotePos[1] - newPos[1]) * (flagAntidotePos[1] - newPos[1]));
     const float twoRads = getRadius() + BZDBCache::flagRadius;
     if (dist < (twoRads * twoRads)) {
-      server->sendDropFlag(getPosition());
+      server->sendDropFlag(getId(), getPosition());
     }
   }
 
@@ -1645,7 +1645,7 @@ void			LocalPlayer::changeScore(short deltaWins,
     flagShakingWins -= deltaWins;
     if (flagShakingWins <= 0) {
       flagShakingWins = 0;
-      server->sendDropFlag(getPosition());
+      server->sendDropFlag(getId(), getPosition());
     }
   }
 }

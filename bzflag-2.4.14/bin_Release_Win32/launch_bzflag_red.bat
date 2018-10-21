@@ -1,0 +1,1 @@
+bzflag -config "playerConfig.cfg" -window 800x600 -team red -solo 3

@@ -353,7 +353,7 @@ static std::string cmdDrop(const std::string&,
 	(flag->endurance != FlagSticky) && !myTank->isPhantomZoned() &&
 	!(flag == Flags::OscillationOverthruster &&
 	  myTank->getLocation() == LocalPlayer::InBuilding)) {
-      serverLink->sendDropFlag(myTank->getPosition());
+      serverLink->sendDropFlag(myTank->getId(), myTank->getPosition());
       // changed: on windows it may happen the MsgDropFlag
       // never comes back to us, so we drop it right away
       handleFlagDropped(myTank);

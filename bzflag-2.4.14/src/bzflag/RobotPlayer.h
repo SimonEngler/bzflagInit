@@ -30,6 +30,7 @@
 #include "RegionPriorityQueue.h"
 #include "ServerLink.h"
 
+#include "ControlPanel.h"
 
 class RobotPlayer : public LocalPlayer {
   public:
@@ -59,8 +60,24 @@ class RobotPlayer : public LocalPlayer {
 
      void		projectPosition(const Player *targ,const float t,float &x,float &y,float &z) const;
      void		getProjectedPosition(const Player *targ, float *projpos) const;
+/* lines added by David Chin */
+     void		RobotPlayer::findHomeBase(TeamColor teamColor, float location[3]);
+     bool		RobotPlayer::myTeamHoldingOpponentFlag(void);
+     void		RobotPlayer::findOpponentFlag(float location[3]);
+     int		computeCenterOfMass(float neighborhoodSize, float cmOut[3]);
+     int		computeRepulsion(float neighborhoodSize, float repulseOut[3]);
+     int		computeAlign(float neighborhoodSize, float avVOut[3], float* avAzimuthOut);
+     float 		computeWander(void);
+     Player* 		lookupLocalPlayer(PlayerId id);
 
-  private:
+     static const float		CohesionW;
+     static const float		SeparationW;
+     static const float		AlignW;
+     static const float		PathW;
+private:
+     static float		wanderAzimuth;
+     static TimeKeeper          tick;
+/* end of lines added by David Chin */
     const Player*	target;
     std::vector<RegionPoint>	path;
     int			pathIndex;

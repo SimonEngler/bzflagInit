@@ -4572,42 +4572,62 @@ static void handleCommand(int t, void *rawbuf, bool udp)
       break;
     }
 
-    // player requesting to grab flag
+    // player or player's bot requesting to grab flag
     case MsgGrabFlag: {
-      // data: flag index
-      uint16_t flag;
+        // data: flag index, player id (may be a bot)
+        uint16_t flag;
+        PlayerId id;
 
-      if (invalidPlayerAction(playerData->player, t, "grab a flag"))
-	break;
-
-      buf = nboUnpackUShort(buf, flag);
-      // Sanity check
-      if (flag < numFlags)
-	grabFlag(t, *FlagInfo::get(flag), true);
-      break;
+        buf = nboUnpackUShort(buf, flag);
+        buf = nboUnpackUByte(buf, id);
+        playerData = GameKeeper::Player::getPlayerByIndex(id);
+        if (invalidPlayerAction(playerData->player, id, "grab a flag"))
+            break;
+        // sender should be grabber unless grabber is a bot
+        // should also check if sender and bot are related
+        if (id != t && !playerData->player.isBot()) break;
+        // Sanity check
+        if (flag < numFlags)
+            grabFlag(id, *FlagInfo::get(flag));
+        break;
     }
 
-    // player requesting to drop flag
+    // player or player's bot requesting to drop flag
     case MsgDropFlag: {
-      // data: position of drop
-      float pos[3];
-      buf = nboUnpackVector(buf, pos);
-      dropPlayerFlag(*playerData, pos);
-      break;
+        // data: position of drop
+        float pos[3];
+        PlayerId id;
+        GameKeeper::Player *playerData;
+        buf = nboUnpackVector(buf, pos);
+        buf = nboUnpackUByte(buf, id);
+        playerData = GameKeeper::Player::getPlayerByIndex(id);
+        // sender should be dropper unless dropper is a bot
+        // should also check if sender and bot are related
+        if (id != t && !playerData->player.isBot()) break;
+        dropPlayerFlag(*playerData, pos);
+        break;
     }
 
-    // player has captured a flag
+     // player or player's bot has captured a flag
     case MsgCaptureFlag: {
-      // data: team whose territory flag was brought to
-      uint16_t _team;
+        // data: team whose territory flag was brought to
+        uint16_t _capping_team, _capped_team;
+        PlayerId id;
 
-      if (invalidPlayerAction(playerData->player, t, "capture a flag"))
-	break;
-
-      buf = nboUnpackUShort(buf, _team);
-      captureFlag(t, TeamColor(_team));
-      break;
+        buf = nboUnpackUShort(buf, _capped_team);
+        buf = nboUnpackUShort(buf, _capping_team);
+        buf = nboUnpackUByte(buf, id);
+        playerData = GameKeeper::Player::getPlayerByIndex(id);
+        if (invalidPlayerAction(playerData->player, id, "capture a flag"))
+            break;
+        playerData = GameKeeper::Player::getPlayerByIndex(id);
+        // sender should be capturer unless capturer is a bot
+        // should also check if sender and bot are related
+        if (id != t && !playerData->player.isBot()) break;
+        captureFlag(id, TeamColor(_capping_team), TeamColor(_capped_team), true);
+        break;
     }
+
 
     // shot fired
     case MsgShotBegin:

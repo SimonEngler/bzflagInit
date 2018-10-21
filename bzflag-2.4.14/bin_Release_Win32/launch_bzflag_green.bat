@@ -1,0 +1,1 @@
+bzflag -config "playerConfig.cfg" -solo 50 -window 800x600 -team green

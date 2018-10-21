@@ -91,7 +91,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.\;..\..\include;$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\bin;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\src\curl\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\src\curl;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CONSOLE;WIN32;NDEBUG;INSIDE_BZ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -111,10 +111,10 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cares.lib;libcurl.lib;regex.lib;zlib.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>cares.lib;libcurl.lib;regex.lib;zlib.lib;ws2_32.lib;winmm.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)bzfs.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\lib;C:\Users\simon\source\repos\bzflag\bzflag-dependencies;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\src;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ProgramDatabaseFile>.$(OutDir)bzfs.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
@@ -190,7 +190,7 @@ copy "$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\bin\*.dll" "..\..\
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.\;..\..\include;$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\include;$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CONSOLE;WIN32;_DEBUG;INSIDE_BZ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -215,7 +215,7 @@ copy "$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\bin\*.dll" "..\..\
       <AdditionalDependencies>caresd.lib;libcurl_debug.lib;regex.lib;zlib.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)bzfs.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\lib;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)bzfs.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>

@@ -120,7 +120,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\;..\..\include;$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\include\curl;$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -130,6 +130,8 @@
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)game.lib</OutputFile>
+      <AdditionalLibraryDirectories>C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\lib;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\src\curl\builds\libcurl-vc15-x86-release-dll-cares-dll-zlib-dll-ipv6-sspi-winssl-obj-curl;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\src\curl\src;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cares.lib;libcurl.lib;regex.lib;zlib.lib;ws2_32.lib;winmm.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -10,6 +10,8 @@
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+//#define TRACE2
+
 // interface header
 #include "playing.h"
 
@@ -165,6 +167,7 @@ static void		markOld(std::string &fileName);
 #ifdef ROBOT
 static void		setRobotTarget(RobotPlayer* robot);
 #endif
+static void		setFlagLocalAndRemote(Player* tank, FlagType* ftype);
 
 static ResourceGetter	*resourceDownloader = NULL;
 
@@ -2186,7 +2189,7 @@ static void		handleServerMessage(bool human, uint16_t code,
       if (victimPlayer == myTank) {
 	// uh oh, i'm dead
 	if (myTank->isAlive()) {
-	  serverLink->sendDropFlag(myTank->getPosition());
+	  serverLink->sendDropFlag(myTank->getId(), myTank->getPosition());
 	  handleMyTankKilled(reason);
 	}
       }
@@ -2382,12 +2385,27 @@ static void		handleServerMessage(bool human, uint16_t code,
       msg = nboUnpackUShort(msg, flagIndex);
       msg = world->getFlag(int(flagIndex)).unpack(msg);
       Player* tank = lookupPlayer(id);
+#ifdef TRACE2
+	  char buffer[128];
+	  sprintf (buffer, "inside MsgGrabFlag, beginning, PlayerIds=%d", id);
+	  controlPanel->addMessage(buffer);
+#endif
       if (!tank) break;
 
       // player now has flag
-      tank->setFlag(world->getFlag(flagIndex).type);
+      setFlagLocalAndRemote(tank, world->getFlag(flagIndex).type);
+#ifdef TRACE2
+	  char buffer[128];
+	  sprintf (buffer, "inside MsgGrabFlag, robot[%d] updated", r);
+	  controlPanel->addMessage(buffer);
+#endif
       if (tank == myTank) {
 	// grabbed flag
+#ifdef TRACE2
+	char buffer[128];
+	sprintf (buffer, "inside MsgGrabFlag self grab flag");
+	controlPanel->addMessage(buffer);
+#endif
 	playLocalSound(myTank->getFlag()->endurance != FlagSticky ?
 		       SFX_GRAB_FLAG : SFX_GRAB_BAD);
 	updateFlag(myTank->getFlag());
@@ -2448,7 +2466,7 @@ static void		handleServerMessage(bool human, uint16_t code,
 
       // player no longer has flag
       if (capturer) {
-	capturer->setFlag(Flags::Null);
+	setFlagLocalAndRemote(capturer, Flags::Null);
 	if (capturer == myTank) {
 	  updateFlag(Flags::Null);
 	}
@@ -3416,15 +3434,15 @@ void handleFlagDropped(Player* tank)
   addMessage(tank, message);
 
   // player no longer has flag
-  tank->setFlag(Flags::Null);
+  setFlagLocalAndRemote(tank, Flags::Null);
 }
 
 static void	handleFlagTransferred( Player *fromTank, Player *toTank, int flagIndex)
 {
   Flag f = world->getFlag(flagIndex);
 
-  fromTank->setFlag(Flags::Null);
-  toTank->setFlag(f.type);
+  setFlagLocalAndRemote(fromTank, Flags::Null);
+  setFlagLocalAndRemote(toTank, f.type);
 
   if ((fromTank == myTank) || (toTank == myTank))
     updateFlag(myTank->getFlag());
@@ -3468,7 +3486,7 @@ static bool		gotBlowedUp(BaseLocalPlayer* tank,
       teachAutoPilot( myTank->getFlag(), -1 );
 
     // tell other players I've dropped my flag
-    lookupServer(tank)->sendDropFlag(tank->getPosition());
+    lookupServer(tank)->sendDropFlag(tank->getId(), tank->getPosition());
 
     // drop it
     handleFlagDropped(tank);
@@ -3672,7 +3690,7 @@ static void		checkEnvironment()
     if ((base != NoTeam) &&
 	((flagd->flagTeam == team && base != team) ||
 	(flagd->flagTeam != team && base == team)))
-      serverLink->sendCaptureFlag(base);
+      serverLink->sendCaptureFlag(myTank->getId(), base, flagd->flagTeam);
   }
   else if (flagd == Flags::Null && (myTank->getLocation() == LocalPlayer::OnGround ||
 				    myTank->getLocation() == LocalPlayer::OnBuilding)) {
@@ -3689,7 +3707,13 @@ static void		checkEnvironment()
 	const float* fpos = world->getFlag(i).position;
 	if ((fabs(tpos[2] - fpos[2]) < 0.1f) && ((tpos[0] - fpos[0]) * (tpos[0] - fpos[0]) +
 						 (tpos[1] - fpos[1]) * (tpos[1] - fpos[1]) < radius2)) {
-	  serverLink->sendGrabFlag(i);
+#ifdef TRACE2
+	  char buffer[128];
+	  sprintf (buffer, "tank(%d) with color %d is grabbing flag(%d) at (%f, %f, %f)",
+		  myTank->getId(), myTank->getTeam(), i, fpos[0], fpos[1], fpos[2]);
+	  controlPanel->addMessage(buffer);
+#endif
+	  serverLink->sendGrabFlag(myTank->getId(), i);
 	  lastGrabSent=TimeKeeper::getTick();
 	}
       }
@@ -4122,6 +4146,23 @@ static void		updateDaylight(double offset, SceneRenderer& renderer)
   renderer.setTimeOfDay(unixEpoch + offset / SecondsInDay);
 }
 
+/*
+ * Call setFlag on both the RemotePlayer and LocalPlayer
+ * this is needed to allow robot tanks to pick up/drop flags
+ */
+static void		setFlagLocalAndRemote(Player* tank, FlagType* ftype) {
+  tank->setFlag(ftype);
+#ifdef ROBOT
+  if (tank->getPlayerType() == ComputerPlayer) {
+	  for (int r = 0; r < numRobots; r++) {
+		  if (robots[r]->getId() == tank->getId()) {
+			  robots[r]->setFlag(ftype);
+		  }
+	  }
+  }
+#endif
+}
+
 #ifdef ROBOT
 
 //
@@ -4323,6 +4364,50 @@ static void		checkEnvironment(RobotPlayer* tank)
   // skip this if i'm dead or paused
   if (!tank->isAlive() || tank->isPaused()) return;
 
+  FlagType* flagd = tank->getFlag();
+  if (flagd->flagTeam != NoTeam) {
+    // have I captured a flag?
+    TeamColor base = world->whoseBase(tank->getPosition());
+    TeamColor team = tank->getTeam();
+    if ((base != NoTeam) &&
+	((flagd->flagTeam == team && base != team) ||
+	(flagd->flagTeam != team && base == team))) {
+#ifdef TRACE2
+	char buffer[128];
+	sprintf (buffer, "inside checkEnvironment for robot %d, captured flag %d",
+		tank->getId(), flagd->flagTeam);
+	controlPanel->addMessage(buffer);
+#endif
+      serverLink->sendCaptureFlag(tank->getId(), base, flagd->flagTeam);
+	}
+  }
+  else if (flagd == Flags::Null && (tank->getLocation() == LocalPlayer::OnGround ||
+				    tank->getLocation() == LocalPlayer::OnBuilding)) {
+    // Don't grab too fast
+    static TimeKeeper lastGrabSent;
+    if (TimeKeeper::getTick()-lastGrabSent > 0.2) {
+      // grab any and all flags i'm driving over
+      const float* tpos = tank->getPosition();
+      const float radius = tank->getRadius();
+      const float radius2 = (radius + BZDBCache::flagRadius) * (radius + BZDBCache::flagRadius);
+      for (int i = 0; i < numFlags; i++) {
+	if (world->getFlag(i).type == Flags::Null || world->getFlag(i).status != FlagOnGround)
+	  continue;
+	const float* fpos = world->getFlag(i).position;
+	if ((fabs(tpos[2] - fpos[2]) < 0.1f) && ((tpos[0] - fpos[0]) * (tpos[0] - fpos[0]) +
+						 (tpos[1] - fpos[1]) * (tpos[1] - fpos[1]) < radius2)) {
+#ifdef TRACE2
+	char buffer[128];
+	sprintf (buffer, "inside checkEnvironment for robot %d, grabbed flag %d", tank->getId(), i);
+	controlPanel->addMessage(buffer);
+#endif
+	  serverLink->sendGrabFlag(tank->getId(), i);
+	  lastGrabSent=TimeKeeper::getTick();
+	}
+      }
+    }
+  }
+
   // see if i've been shot
   const ShotPath* hit = NULL;
   float minTime = Infinity;
@@ -4507,7 +4592,7 @@ static void setTankFlags()
     if (flag.status == FlagOnTank) {
       for (int j = 0; j < curMaxPlayers; j++) {
 	if (remotePlayers[j] && remotePlayers[j]->getId() == flag.owner) {
-	  remotePlayers[j]->setFlag(flag.type);
+	  setFlagLocalAndRemote(remotePlayers[j], flag.type);
 	  break;
 	}
       }
@@ -6283,7 +6368,7 @@ static void		updatePauseCountdown(float dt)
 	// okay, now we pause.  first drop any team flag we may have.
 	const FlagType* flagd = myTank->getFlag();
 	if (flagd->flagTeam != NoTeam)
-	  serverLink->sendDropFlag(myTank->getPosition());
+	  serverLink->sendDropFlag(myTank->getId(), myTank->getPosition());
 
 	if (World::getWorld()->allowRabbit() && (myTank->getTeam() == RabbitTeam))
 	  serverLink->sendNewRabbit();

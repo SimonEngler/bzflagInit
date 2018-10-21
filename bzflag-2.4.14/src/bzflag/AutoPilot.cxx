@@ -498,7 +498,7 @@ static bool lookForFlag(float &rotation, float &speed)
   if (closestFlag != -1) {
     if (minDist < 10.0f) {
       if (myTank->getFlag() != Flags::Null) {
-	serverLink->sendDropFlag(myTank->getPosition());
+	serverLink->sendDropFlag(myTank->getId(), myTank->getPosition());
 	handleFlagDropped(myTank);
       }
     }
@@ -551,14 +551,14 @@ static bool navigate(float &rotation, float &speed)
     World *world = World::getWorld();
     const float *temp = world->getBase(myTank->getTeam());
     if (temp == NULL) {
-      serverLink->sendDropFlag(myTank->getPosition());
+      serverLink->sendDropFlag(myTank->getId(), myTank->getPosition());
       handleFlagDropped(myTank);
     } else {
       if ((((int) *(world->getBase(myTank->getTeam())) + 2
 	    >= (int) *(myTank->getPosition()))
 	   || (temp[0] == pos[0] && temp[1] == pos[1])) &&
 	  myTank->getFlag()->flagTeam == myTank->getTeam()) {
-	serverLink->sendDropFlag(myTank->getPosition());
+	serverLink->sendDropFlag(myTank->getId(), myTank->getPosition());
 	handleFlagDropped(myTank);
       } else {
 	float baseAzimuth = TargetingUtils::getTargetAzimuth(pos, temp);
@@ -696,7 +696,7 @@ static void dropHardFlags()
   ||  (type == Flags::MachineGun)
   ||  (type == Flags::Identify)
   ||  ((type == Flags::PhantomZone) && !myTank->isFlagActive())) {
-    serverLink->sendDropFlag(myTank->getPosition());
+    serverLink->sendDropFlag(myTank->getId(), myTank->getPosition());
     handleFlagDropped(myTank);
   }
 }

@@ -1,0 +1,7605 @@
+# BZFlag client: saved world on Sun Jul 29 23:18:45 2018
+
+options
+  -c
+  -mp 2,2,2,2,2,2
+  -j
+  +r
+  -a 50 38
+  -ms 3
+  -set _burrowAngularAd 1.25
+  -set _disableBots 1
+  -set _explodeTime 0.15
+  -set _laserAdRate 1.5
+  -set _mGunAdVel 7.5
+  -set _maxFlagGrabs 1
+  -set _reloadTime 2
+  -set _shotSpeed 175
+  -set _wingsJumpCount 5
+end
+
+dynamicColor
+  name LinkMaterial
+  red limits 0 0.25
+  red sinusoid 2 0 1
+  green limits 0 0.25
+  green sinusoid 2 0.666667 1
+  blue limits 0 0.25
+  blue sinusoid 2 1.33333 1
+  alpha limits 0.75 0.75
+end
+
+textureMatrix
+  name LinkMaterial
+  shift 0 -0.05
+end
+
+material
+  name PyrWalls
+  diffuse 0.75 0.75 0.75 0.75
+  addtexture pyrwall.png
+end
+
+material
+  name rb
+  diffuse 1 0 0 1
+  addtexture boxwall
+end
+
+material
+  name bt
+  addtexture roof
+end
+
+material
+  addtexture boxwall
+end
+
+material
+  addtexture wall
+end
+
+material
+  name gb
+  diffuse 0 1 0 1
+  addtexture boxwall
+end
+
+material
+  name bb
+  diffuse 0 0 1 1
+  addtexture boxwall
+end
+
+material
+  name pb
+  diffuse 1 0 1 1
+  addtexture boxwall
+end
+
+material
+  name transmat
+  diffuse 1 1 1 0.6
+  addtexture mesh
+end
+
+material
+  name LinkMaterial
+  dyncol LinkMaterial
+  diffuse 0 0 0 0.5
+  nolighting
+  addtexture telelink
+    texmat LinkMaterial
+end
+
+define spawnpod
+  mesh
+  # faces = 8
+  # checks = 0
+  # vertices = 5
+  # normals = 0
+  # texcoords = 0
+  # mins = -1 -1 0
+  # maxs = 1 1 1
+    driveThrough
+    vertex 0.00000000 0.00000000 1.00000000
+    vertex -1.00000000 -1.00000000 0.00000000
+    vertex -1.00000000 1.00000000 0.00000000
+    vertex 1.00000000 1.00000000 0.00000000
+    vertex 1.00000000 -1.00000000 0.00000000
+    face
+      vertices 0 1 2
+      matref PyrWalls
+      passable
+    endface
+    face
+      vertices 0 2 3
+      matref PyrWalls
+      passable
+    endface
+    face
+      vertices 0 3 4
+      matref PyrWalls
+      passable
+    endface
+    face
+      vertices 0 4 1
+      matref PyrWalls
+      passable
+    endface
+    face
+      vertices 2 1 0
+      matref PyrWalls
+    endface
+    face
+      vertices 3 2 0
+      matref PyrWalls
+    endface
+    face
+      vertices 4 3 0
+      matref PyrWalls
+    endface
+    face
+      vertices 1 4 0
+      matref PyrWalls
+    endface
+  end
+enddef
+
+define transbd
+  mesh
+  # faces = 6
+  # checks = 0
+  # vertices = 8
+  # normals = 0
+  # texcoords = 0
+  # mins = -1 -1 0
+  # maxs = 1 1 1
+    vertex 1.00000000 1.00000000 0.00000000
+    vertex 1.00000000 -1.00000000 0.00000000
+    vertex -1.00000000 -1.00000000 0.00000000
+    vertex -1.00000000 1.00000000 0.00000000
+    vertex 1.00000000 1.00000000 1.00000000
+    vertex 1.00000000 -1.00000000 1.00000000
+    vertex -1.00000000 -1.00000000 1.00000000
+    vertex -1.00000000 1.00000000 1.00000000
+    face
+      vertices 0 1 2 3
+      matref transmat
+      driveThrough
+    endface
+    face
+      vertices 1 0 4 5
+      matref transmat
+      driveThrough
+    endface
+    face
+      vertices 2 1 5 6
+      matref transmat
+    endface
+    face
+      vertices 3 2 6 7
+      matref transmat
+      driveThrough
+    endface
+    face
+      vertices 0 3 7 4
+      matref transmat
+      passable
+    endface
+    face
+      vertices 7 6 5 4
+      matref transmat
+    endface
+  end
+enddef
+
+pyramid
+  position 300 250 65
+  size 2 2 17
+  rotation 0
+end
+pyramid
+  position 250 300 65
+  size 2 2 17
+  rotation 0
+end
+pyramid
+  position -300 -250 65
+  size 2 2 17
+  rotation 0
+end
+pyramid
+  position -250 -300 65
+  size 2 2 17
+  rotation 0
+end
+pyramid
+  position -300 250 65
+  size 2 2 17
+  rotation 0
+end
+pyramid
+  position -250 300 65
+  size 2 2 17
+  rotation 0
+end
+pyramid
+  position 300 -250 65
+  size 2 2 17
+  rotation 0
+end
+pyramid
+  position 250 -300 65
+  size 2 2 17
+  rotation 0
+end
+pyramid
+  position 300 250 60
+  size 10 10 7
+  rotation 0
+end
+pyramid
+  position 250 300 60
+  size 10 10 7
+  rotation 0
+end
+pyramid
+  position -300 -250 60
+  size 10 10 7
+  rotation 0
+end
+pyramid
+  position -250 -300 60
+  size 10 10 7
+  rotation 0
+end
+pyramid
+  position -300 250 60
+  size 10 10 7
+  rotation 0
+end
+pyramid
+  position -250 300 60
+  size 10 10 7
+  rotation 0
+end
+pyramid
+  position 300 -250 60
+  size 10 10 7
+  rotation 0
+end
+pyramid
+  position 250 -300 60
+  size 10 10 7
+  rotation 0
+end
+pyramid
+  position 220 220 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position 220 -220 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position -355 220 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position 355 220 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position -220 355 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position -220 220 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position 220 355 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position -220 -355 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position -220 -220 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position 355 -220 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position 220 -355 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position -355 -220 13.5
+  size 5 5 5
+  rotation 0
+end
+pyramid
+  position -327.5 352.5 0
+  size 1.5 1.5 10
+  rotation -45
+end
+pyramid
+  position 352.5 -327.5 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 340 340 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 327.5 -352.5 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 352.5 327.5 0
+  size 1.5 1.5 10
+  rotation 45
+end
+pyramid
+  position 327.5 -352.5 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 352.5 327.5 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -327.5 -352.5 0
+  size 1.5 1.5 10
+  rotation 45
+end
+pyramid
+  position -340 340 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -352.5 327.5 0
+  size 1.5 1.5 10
+  rotation -45
+end
+pyramid
+  position 340 -340 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -352.5 327.5 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 327.5 352.5 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -352.5 -327.5 0
+  size 1.5 1.5 10
+  rotation 45
+end
+pyramid
+  position -327.5 352.5 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -327.5 352.5 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -340 -340 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -327.5 -352.5 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 352.5 -327.5 0
+  size 1.5 1.5 10
+  rotation -45
+end
+pyramid
+  position 340 -340 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -352.5 -327.5 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -340 340 0
+  size 1.5 1.5 10
+  rotation -45
+end
+pyramid
+  position 352.5 -327.5 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 327.5 -352.5 0
+  size 1.5 1.5 10
+  rotation -45
+end
+pyramid
+  position 340 -340 0
+  size 1.5 1.5 10
+  rotation -45
+end
+pyramid
+  position 327.5 352.5 0
+  size 1.5 1.5 10
+  rotation 45
+end
+pyramid
+  position 340 340 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -340 -340 0
+  size 1.5 1.5 10
+  rotation 45
+end
+pyramid
+  position -340 -340 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -352.5 -327.5 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -340 340 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -352.5 327.5 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 340 340 0
+  size 1.5 1.5 10
+  rotation 45
+end
+pyramid
+  position 352.5 327.5 7
+  size 1 5 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 327.5 352.5 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position -327.5 -352.5 7
+  size 5 1 3
+  rotation 0
+  flipz
+end
+pyramid
+  position 271 271 0
+  size 8 24 8
+  rotation 45
+end
+pyramid
+  position -271 271 0
+  size 8 24 8
+  rotation -45
+end
+pyramid
+  position -271 -271 0
+  size 8 24 8
+  rotation 45
+end
+pyramid
+  position 271 -271 0
+  size 8 24 8
+  rotation -45
+end
+pyramid
+  position 352.5 327.5 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position -327.5 -352.5 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position -340 340 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position -340 340 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position 340 -340 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position 327.5 352.5 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position -352.5 327.5 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position -352.5 327.5 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position -327.5 -352.5 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position -352.5 -327.5 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position -352.5 -327.5 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position 327.5 -352.5 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position -327.5 352.5 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position 340 340 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position 340 -340 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position -327.5 352.5 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position -340 -340 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position 352.5 327.5 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position -340 -340 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position 327.5 352.5 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position 352.5 -327.5 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position 352.5 -327.5 0
+  size 5 1 3
+  rotation 0
+end
+pyramid
+  position 327.5 -352.5 0
+  size 1 5 3
+  rotation 0
+end
+pyramid
+  position 340 340 0
+  size 1 5 3
+  rotation 0
+end
+base
+  position 385 385 0
+  size 15 15 0
+  rotation 0
+  color 1
+end
+base
+  position -385 -385 0
+  size 15 15 0
+  rotation 0
+  color 2
+end
+base
+  position -385 385 0
+  size 15 15 0
+  rotation 0
+  color 3
+end
+base
+  position 385 -385 0
+  size 15 15 0
+  rotation 0
+  color 4
+end
+teleporter /t1
+  position 300 259.9 50
+  size 0.125 4 3
+  rotation 90
+  border 0
+end
+teleporter /t3
+  position 259 300 50
+  size 0.125 4 3
+  rotation 0
+  border 0
+end
+teleporter /t5
+  position -259 300 50
+  size 0.125 4 3
+  rotation 0
+  border 0
+end
+teleporter /t7
+  position -300 259.9 50
+  size 0.125 4 3
+  rotation 90
+  border 0
+end
+teleporter /t9
+  position -300 -259.9 50
+  size 0.125 4 3
+  rotation 90
+  border 0
+end
+teleporter /t11
+  position -259 -300 50
+  size 0.125 4 3
+  rotation 0
+  border 0
+end
+teleporter /t13
+  position 259 -300 50
+  size 0.125 4 3
+  rotation 0
+  border 0
+end
+teleporter /t15
+  position 300 -259.9 50
+  size 0.125 4 3
+  rotation 90
+  border 0
+end
+teleporter /t0
+  position 300 264.7 -0.01
+  size 0.125 5 5.01
+  rotation 90
+  border 0
+end
+teleporter /t2
+  position 264.7 300 -0.01
+  size 0.125 5 5.01
+  rotation 0
+  border 0
+end
+teleporter /t4
+  position -264.7 300 -0.01
+  size 0.125 5 5.01
+  rotation 0
+  border 0
+end
+teleporter /t6
+  position -300 264.7 -0.01
+  size 0.125 5 5.01
+  rotation 90
+  border 0
+end
+teleporter /t8
+  position -300 -264.7 -0.01
+  size 0.125 5 5.01
+  rotation 90
+  border 0
+end
+teleporter /t10
+  position -264.7 -300 -0.01
+  size 0.125 5 5.01
+  rotation 0
+  border 0
+end
+teleporter /t12
+  position 264.7 -300 -0.01
+  size 0.125 5 5.01
+  rotation 0
+  border 0
+end
+teleporter /t14
+  position 300 -264.7 -0.01
+  size 0.125 5 5.01
+  rotation 90
+  border 0
+end
+arc
+  position 0 0 0
+  size 10.9602 39.0323 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 190 -190 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 88.3884 2.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 185 -287.5 11
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 35.3553 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 325 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 2.82843 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 177 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.4264 1.41421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -325 -75 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.4264 1.41421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 325 -75 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 -300 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -100 200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 -340 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 338 -280 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 100 200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -300 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -309 250 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -200 200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.8492 7.07107 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 389.5 310 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 21.2132 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -385 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 395 -395 39
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 88.3884 2.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -185 287.5 11
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 200 200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 375 -200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 200 375 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 88.3884 14.1421 2.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 287.5 185 11
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 88.3884 2.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 185 287.5 11
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 2.82843 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 177 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 2.82843 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 325 177 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 35.3553 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 325 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 35.3553 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 250 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 28.2843 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 -300 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 21.2132 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 385 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 200 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 200 177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 21.2132 2.82843 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -385 177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 138.593 9.8995 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 302 172 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 9.8995 138.593 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 172 302 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 240 177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.6066 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 312.5 -260 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 320 177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 240 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 280 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.9602 39.0323 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -190 190 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 84.8528 2.82843 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 270 177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 9.8995 138.593 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 172 -302 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 340 177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 340 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 84.8528 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 270 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -280 177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 260 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 220 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 24.0416 2.82843 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 165 180 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -200 -100 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 33.9411 2.82843 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 202 398 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 33.9411 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 398 202 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 49
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 300 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 320 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 291 250 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 309 250 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 259 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -240 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 291 250 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 241 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 4.24264 1.41421 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 307 259 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -220 177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 4.24264 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 259 293 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 4.24264 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 259 307 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 309 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 -300 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 291 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 12.7279 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 241 300 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 291 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 300 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 14.1421 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 300 49
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 14.1421 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 250 49
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 28.2843 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 300 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 -177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 10.6066 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 312.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 10.6066 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 287.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.6066 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 287.5 260 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 24.0416 2.82843 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -180 165 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.9638 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 338 280 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.9638 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 280 338 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 6.99329 25.0316 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 271 271 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 320 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 280 338 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 16.5463 16.5463 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 367.5 310 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 16.5463 16.5463 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 310 367.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 49
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 250 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 14.8492 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 310 389.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 41.0122 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 340 340 10
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -200 -200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -340 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -200 -375 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 88.3884 14.1421 2.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -287.5 -185 11
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 88.3884 2.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -185 -287.5 11
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 12.7279 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 241 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 2.82843 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -325 -177 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 35.3553 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -325 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 35.3553 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -250 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.8492 7.07107 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 389.5 -310 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 21.2132 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -385 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -200 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -200 -177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 4.24264 1.41421 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -293 259 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 138.593 9.8995 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -302 -172 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 9.8995 138.593 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -172 -302 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -240 -177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -220 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -320 -177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -240 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -280 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -259 300 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 84.8528 2.82843 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -270 -177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 -177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 -177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 241 300 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -340 -177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -340 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 84.8528 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -270 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -241 300 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -260 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -220 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 24.0416 2.82843 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -165 -180 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 33.9411 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 398 -202 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 33.9411 2.82843 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -202 -398 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 33.9411 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -398 -202 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 49
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 -300 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 28.2843 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 260 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -291 -250 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -309 -250 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 -259 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -75 325 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -291 -250 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 -241 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 4.24264 1.41421 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -307 -259 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.6066 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -312.5 260 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 4.24264 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -259 -293 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 4.24264 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -259 -307 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 -309 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 309 -250 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 -291 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 12.7279 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -241 -300 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 -291 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -338 280 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 14.1421 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 -300 49
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 14.1421 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 -250 49
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 28.2843 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 -300 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.9602 39.0323 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -190 -190 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 10.6066 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 -312.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 10.6066 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 -287.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.6066 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -287.5 -260 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.8492 7.07107 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -389.5 310 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.9638 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -338 -280 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.9638 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -280 -338 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 6.99329 25.0316 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -271 -271 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 -241 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -280 -338 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 16.5463 16.5463 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -367.5 -310 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 16.5463 16.5463 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -310 -367.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -340 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 14.8492 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -310 -389.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 41.0122 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -340 -340 10
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 50 50 13.5
+  rotation 0
+  angle 360
+  ratio 0.1
+  divisions 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref 3
+  startside matref 4
+  endside matref 4
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -75 -325 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position -50 50 0
+  size 50 50 13.5
+  rotation 0
+  angle 360
+  ratio 0.1
+  divisions 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref 3
+  startside matref 4
+  endside matref 4
+end
+arc
+  position 50 -50 0
+  size 50 50 13.5
+  rotation 0
+  angle 360
+  ratio 0.1
+  divisions 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref 3
+  startside matref 4
+  endside matref 4
+end
+arc
+  position -50 -50 0
+  size 50 50 13.5
+  rotation 0
+  angle 360
+  ratio 0.1
+  divisions 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref 3
+  startside matref 4
+  endside matref 4
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 220 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 340 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 4.24264 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 259 -307 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 220 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 260 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 300 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 380 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 380 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 380 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -340 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 4.24264 1.41421 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -293 -259 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 -220 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 2.82843 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 325 -177 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 -380 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 88.3884 14.1421 2.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 287.5 -185 11
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -100 -200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 200 100 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -200 375 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 12.7279 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 241 -300 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 2.82843 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -325 177 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 200 -177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 35.3553 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 250 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -380 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 21.2132 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 385 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 138.593 9.8995 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 302 -172 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -200 177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 -380 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 138.593 9.8995 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -302 172 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 240 -177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -240 177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 10.6066 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 -312.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -320 177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 320 -177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 280 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 21.2132 2.82843 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 385 -177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 84.8528 2.82843 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -270 177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -280 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.6066 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 287.5 -260 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -340 177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 84.8528 2.82843 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 270 -177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 84.8528 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 270 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.4264 1.41421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 325 75 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 260 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 -177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 24.0416 2.82843 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -165 180 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.9638 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 338 -280 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 33.9411 2.82843 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -202 398 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 340 -177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 49
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 300 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 9.8995 138.593 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -172 302 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -291 250 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 84.8528 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -270 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 259 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 6.99329 25.0316 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 271 -271 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -291 250 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -260 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 4.24264 1.41421 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -307 259 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 100 -200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 4.24264 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -259 293 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 24.0416 2.82843 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 165 -180 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 309 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 280 -338 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 291 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 33.9411 2.82843 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 202 -398 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 291 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 220 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 14.1421 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 300 49
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 49
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 -300 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 28.2843 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 300 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 16.5463 16.5463 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 310 -367.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 10.6066 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 312.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 291 -250 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.6066 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -287.5 260 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 21.2132 21.2132 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 385 385 29
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.9638 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -338 280 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 -259 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 6.99329 25.0316 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -271 271 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 14.8492 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 310 -389.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -280 338 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 291 -250 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 16.5463 16.5463 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -310 367.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 4.24264 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -259 307 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 14.8492 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -310 389.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 4.24264 1.41421 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 307 -259 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -380 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 380 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 4.24264 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 259 -293 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -220 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 395 395 39
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 260 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 -309 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 340 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 200 -200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 -291 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 200 -375 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.9638 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -280 338 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -220 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 -291 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 35.3553 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -250 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 220 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -375 200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 35.3553 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -325 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 375 200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 75 325 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 21.2132 2.82843 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 385 177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 88.3884 14.1421 2.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -287.5 185 11
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 280 177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 14.1421 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 -250 49
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 220 177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.9602 39.0323 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 190 190 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 24.0416 2.82843 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 180 165 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 380 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 12.7279 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 241 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 300 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 259 300 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 280 -177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 28.2843 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 260 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 4.24264 1.41421 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 293 259 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift 338 280 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 75 -325 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 35.3553 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -375 -200 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.6066 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 312.5 260 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 21.2132 2.82843 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -385 -177 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 220 -177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -280 -177 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 2.82843 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -250 -177 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -220 -177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 10.6066 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -312.5 -260 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 24.0416 2.82843 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -180 -165 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -320 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 12.7279 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 -241 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 24.0416 2.82843 2
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 180 -165 25
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -259 -300 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 49
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 -250 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 28.2843 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 -260 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 -260 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 45 0 0 1
+  shift -338 -280 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -241 -300 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 50 50 0
+  size 50 50 13.5
+  rotation 0
+  angle 360
+  ratio 0.1
+  divisions 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref 3
+  startside matref 4
+  endside matref 4
+end
+arc
+  position 0 0 0
+  size 12.7279 1.41421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 -241 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 220 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.8492 7.07107 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -389.5 -310 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 14.1421 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 -300 49
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 21.2132 21.2132 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -385 -385 29
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -200 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 -260 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 200 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -166 300 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 240 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 10.6066 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 -287.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 11.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 340 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -395 -395 39
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 33.9411 13.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -398 202 13.5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.9638 7.0145 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 280 -338 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 241 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 41.0122 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -340 340 10
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 12.7279 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -241 300 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 16.5463 16.5463 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 367.5 -310 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 10.6066 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 287.5 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 35.3553 2.82843 11
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 250 -177 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 16.5463 16.5463 20
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -367.5 310 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 41.0122 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 340 -340 10
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -260 166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 49
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 250 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 340 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref rb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 7
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 259 -300 53
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 -340 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -177 -300 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref gb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift -200 100 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 4.24264 1.41421 3
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 293 -259 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 42.4264 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin -45 0 0 1
+  shift 200 -100 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 1.5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 241 -300 50
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 42.4264 1.41421 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -325 75 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 2.82843 10
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 177 15
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 260 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 14.1421 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -300 250 49
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 14.1421 1.41421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 340 -166 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 1.41421 14.1421 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 166 -220 27
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 2.82843 14.1421 9
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 177 -320 16
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 49
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 -250 0
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 21.2132 21.2132 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -385 385 29
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 7.07107 7.07107 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift -395 395 39
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref bb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 21.2132 21.2132 1
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 385 -385 29
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+arc
+  position 0 0 0
+  size 28.2843 7.07107 5
+  rotation 45
+  angle 360
+  ratio 1
+  divisions 4
+  spin 0 0 0 1
+  shift 300 -260 5
+  texsize -8 -8 -8 -8
+  top matref bt
+  bottom matref bt
+  inside matref 3
+  outside matref pb
+  startside matref 4
+  endside matref 4
+  flatshading
+end
+group spawnpod
+  scale 12 12 12
+  shift 300 0 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift 200 0 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift 150 150 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift -200 0 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  shift -300 0 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift -400 0 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift 400 0 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift -150 150 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift -150 -150 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift 150 -150 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  shift 0 300 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  shift 0 -300 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift 0 200 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift 0 -200 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift 0 -400 0
+  driveThrough
+end
+group spawnpod
+  scale 12 12 12
+  spin 45 0 0 1
+  shift 0 400 0
+  driveThrough
+end
+group transbd
+  name door
+  scale 12.5 2 11
+  shift 287.5 177 0
+end
+group transbd
+  name door
+  scale 12.5 2 11
+  spin 270 0 0 1
+  shift 177 287.5 0
+end
+group transbd
+  name door
+  scale 12.5 2 11
+  spin 180 0 0 1
+  shift -287.5 -177 0
+end
+group transbd
+  name door
+  scale 12.5 2 11
+  spin 90 0 0 1
+  shift -177 -287.5 0
+end
+group transbd
+  name door
+  scale 12.5 2 11
+  spin 180 0 0 1
+  shift 287.5 -177 0
+end
+group transbd
+  name door
+  scale 12.5 2 11
+  spin 270 0 0 1
+  shift 177 -287.5 0
+end
+group transbd
+  name door
+  scale 12.5 2 11
+  shift -287.5 177 0
+end
+group transbd
+  name door
+  scale 12.5 2 11
+  spin 90 0 0 1
+  shift -177 287.5 0
+end
+link
+  from /t0:f
+  to   /t1:b
+end
+
+link
+  from /t1:b
+  to   /t0:f
+end
+
+link
+  from /t2:f
+  to   /t3:b
+end
+
+link
+  from /t3:b
+  to   /t2:f
+end
+
+link
+  from /t4:b
+  to   /t5:f
+end
+
+link
+  from /t5:f
+  to   /t4:b
+end
+
+link
+  from /t6:f
+  to   /t7:b
+end
+
+link
+  from /t7:b
+  to   /t6:f
+end
+
+link
+  from /t8:b
+  to   /t9:f
+end
+
+link
+  from /t9:f
+  to   /t8:b
+end
+
+link
+  from /t10:b
+  to   /t11:f
+end
+
+link
+  from /t11:f
+  to   /t10:b
+end
+
+link
+  from /t12:f
+  to   /t13:b
+end
+
+link
+  from /t13:b
+  to   /t12:f
+end
+
+link
+  from /t14:b
+  to   /t15:f
+end
+
+link
+  from /t15:f
+  to   /t14:b
+end
+
+zone
+  position 385 385 0
+  size 15 15 1
+  rotation 0
+  safety 1
+end
+
+zone
+  position -385 -385 0
+  size 15 15 1
+  rotation 0
+  safety 2
+end
+
+zone
+  position -385 385 0
+  size 15 15 1
+  rotation 0
+  safety 3
+end
+
+zone
+  position 385 -385 0
+  size 15 15 1
+  rotation 0
+  safety 4
+end
+
+zone
+  position 0 0 1
+  size 9 9 0
+  rotation 0
+  flag G
+end
+
+zone
+  position 0 0 0
+  size 75 75 0
+  rotation 0
+  flag OO
+end
+
+zone
+  position 300 300 0
+  size 1 1 0
+  rotation 0
+  flag A
+end
+
+zone
+  position -300 -300 0
+  size 1 1 0
+  rotation 0
+  flag A
+end
+
+zone
+  position -300 300 0
+  size 1 1 0
+  rotation 0
+  flag A
+end
+
+zone
+  position 300 -300 0
+  size 1 1 0
+  rotation 0
+  flag A
+end
+
+zone
+  position 367.5 310 20
+  size 10 10 0
+  rotation 0
+  flag WG
+end
+
+zone
+  position -367.5 -310 20
+  size 10 10 0
+  rotation 0
+  flag WG
+end
+
+zone
+  position -367.5 310 20
+  size 10 10 0
+  rotation 0
+  flag WG
+end
+
+zone
+  position 367.5 -310 20
+  size 10 10 0
+  rotation 0
+  flag WG
+end
+
+zone
+  position 310 367.5 20
+  size 10 10 0
+  rotation 0
+  flag SW
+end
+
+zone
+  position -310 -367.5 20
+  size 10 10 0
+  rotation 0
+  flag SW
+end
+
+zone
+  position -310 367.5 20
+  size 10 10 0
+  rotation 0
+  flag SW
+end
+
+zone
+  position 310 -367.5 20
+  size 10 10 0
+  rotation 0
+  flag SW
+end
+
+zone
+  position 300 300 0
+  size 90 90 0
+  rotation 0
+  flag CL GM L SB ST
+  team 1
+end
+
+zone
+  position -300 -300 0
+  size 90 90 0
+  rotation 0
+  flag CL GM L SB ST
+  team 2
+end
+
+zone
+  position -300 300 0
+  size 90 90 0
+  rotation 0
+  flag CL GM L SB ST
+  team 3
+end
+
+zone
+  position 300 -300 0
+  size 90 90 0
+  rotation 0
+  flag CL GM L SB ST
+  team 4
+end
+

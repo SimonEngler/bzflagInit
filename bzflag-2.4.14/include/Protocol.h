@@ -218,11 +218,11 @@ player to server messages:
 			--> /id,/ killer-id, reason, killer-shot-id
 			<== MsgKilled
   MsgNewRabbit		player is relinquishing rabbitship
-  MsgGrabFlag		player wants to grab flag
-			--> /id,/ flag
+  MsgGrabFlag		player or player's bot wants to grab flag
+			--> /id,/ flag, grabber-id
 			<== MsgGrabFlag
-  MsgDropFlag		player wants to drop flag
-			--> /id,/ position
+  MsgDropFlag		player or player's bot wants to drop flag
+			--> /id,/ position, dropper-id
 			<== MsgDropFlag
 			<== MsgFlagUpdate
   MsgCaptureFlag	player captured flag
