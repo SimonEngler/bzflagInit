@@ -1,0 +1,1 @@
+bzfs.exe -dd -c -a 50 38 -world barrier.bzw -ms 3 +r -tk -tkannounce -tkkr 32 -p 5154 -i 192.168.0.9 -mp 50 -lagwarn 30 -timemanual -lagdrop 3 -admsg "AI Testing Server" -advertise "Welcome to Legion" -autoTeam -spamtime 15 -spamwarn 3 -sa -st 5 -sw 1 +f US{10} -publictitle "AI Testing Server"

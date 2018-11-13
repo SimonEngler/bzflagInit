@@ -1,0 +1,1 @@
+bzflag -config "barrier.cfg" -solo 10 -window 800x600 -team o

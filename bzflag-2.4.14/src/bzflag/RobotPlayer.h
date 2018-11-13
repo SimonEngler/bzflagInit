@@ -10,16 +10,16 @@
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- *
- */
+ /*
+  *
+  */
 
 #ifndef	BZF_ROBOT_PLAYER_H
 #define	BZF_ROBOT_PLAYER_H
 
 #include "common.h"
 
-/* system interface headers */
+  /* system interface headers */
 #include <vector>
 
 /* interface header */
@@ -31,59 +31,86 @@
 #include "ServerLink.h"
 
 #include "ControlPanel.h"
+/* lines added by David Chin */
+#include "AStarNode.h" // needed for A* search
+/* end of lines added by David Chin */
 
 class RobotPlayer : public LocalPlayer {
-  public:
-			RobotPlayer(const PlayerId&,
-				const char* name, ServerLink*,
-				const char* _motto);
+public:
+  RobotPlayer(const PlayerId&,
+    const char* name, ServerLink*,
+    const char* _motto);
 
-    float		getTargetPriority(const Player*) const;
-    const Player*	getTarget() const;
-    void		setTarget(const Player*);
-    static void		setObstacleList(std::vector<BzfRegion*>*);
+  float		getTargetPriority(const Player*) const;
+  const Player*	getTarget() const;
+  void		setTarget(const Player*);
+  static void		setObstacleList(std::vector<BzfRegion*>*);
 
-    void		restart(const float* pos, float azimuth);
-    void		explodeTank();
+  void		restart(const float* pos, float azimuth);
+  void		explodeTank();
+  /* code added by David Chin */
+  bool		RobotPlayer::amAlive(float dt);
+  bool		returnTrue(float dt);
+  bool		returnFalse(float dt);
+  /* end of code added by David Chin */
 
-  private:
-    void		doUpdate(float dt);
-    void		doUpdateMotion(float dt);
-    BzfRegion*		findRegion(const float p[2], float nearest[2]) const;
-    float		getRegionExitPoint(
-				const float p1[2], const float p2[2],
-				const float a[2], const float targetPoint[2],
-				float mid[2], float& priority);
-     void		findPath(RegionPriorityQueue& queue,
-				BzfRegion* region, BzfRegion* targetRegion,
-				const float targetPoint[2], int mailbox);
+  /* Lines added by Brendt McFeeley and Kian Kobayashi */
 
-     void		projectPosition(const Player *targ,const float t,float &x,float &y,float &z) const;
-     void		getProjectedPosition(const Player *targ, float *projpos) const;
-/* lines added by David Chin */
-     void		RobotPlayer::findHomeBase(TeamColor teamColor, float location[3]);
-     bool		RobotPlayer::myTeamHoldingOpponentFlag(void);
-     void		RobotPlayer::findOpponentFlag(float location[3]);
-     int		computeCenterOfMass(float neighborhoodSize, float cmOut[3]);
-     int		computeRepulsion(float neighborhoodSize, float repulseOut[3]);
-     int		computeAlign(float neighborhoodSize, float avVOut[3], float* avAzimuthOut);
-     float 		computeWander(void);
-     Player* 		lookupLocalPlayer(PlayerId id);
+  void RobotPlayer::getEnemyFlag(float dt);
+  void RobotPlayer::returnEnemyFlag(float dt);
+  void RobotPlayer :: getTeamFlag(float dt);
+  void RobotPlayer::returnTeamFlag(float dt);
 
-     static const float		CohesionW;
-     static const float		SeparationW;
-     static const float		AlignW;
-     static const float		PathW;
+  bool RobotPlayer::foundEnemyFlag(float dt);
+  bool RobotPlayer::haveEnemyFlag(float dt);
+  bool RobotPlayer::returnedEnemyFlag(float dt);
+  bool RobotPlayer::haveTeamFlag(float dt);
+  bool		RobotPlayer::returnedTeamFlag(float dt);
+
+    /* End of lines added by Brendt McFeeley and Kian Kobayashi */
+
 private:
-     static float		wanderAzimuth;
-     static TimeKeeper          tick;
+  void		doUpdate(float dt);
+  void		doUpdateMotion(float dt);
+  BzfRegion*		findRegion(const float p[2], float nearest[2]) const;
+  float		getRegionExitPoint(
+    const float p1[2], const float p2[2],
+    const float a[2], const float targetPoint[2],
+    float mid[2], float& priority);
+  void		findPath(RegionPriorityQueue& queue,
+    BzfRegion* region, BzfRegion* targetRegion,
+    const float targetPoint[2], int mailbox);
+
+  void		projectPosition(const Player *targ, const float t, float &x, float &y, float &z) const;
+  void		getProjectedPosition(const Player *targ, float *projpos) const;
+  /* lines added by David Chin */
+  void		findHomeBase(TeamColor teamColor, float location[3]);
+  bool		myTeamHoldingOpponentFlag(void);
+  void		findOpponentFlag(float location[3]);
+  int		computeCenterOfMass(float neighborhoodSize, float cmOut[3]);
+  int		computeRepulsion(float neighborhoodSize, float repulseOut[3]);
+  int		computeAlign(float neighborhoodSize, float avVOut[3], float* avAzimuthOut);
+  float 		computeWander(void);
+  Player* 		lookupLocalPlayer(PlayerId id);
+  void		aStarSearch(const float startPos[3], const float goalPos[3],
+    std::vector< std::vector< AStarNode > >& paths);
+
+  static const float		CohesionW;
+  static const float		SeparationW;
+  static const float		AlignW;
+  static const float		PathW;
+private:
+  static float		wanderAzimuth;
+  static TimeKeeper   tick;
+  std::vector<std::vector< AStarNode > > paths; // planner result paths
+  AStarNode pathGoalNode;	// goal position for current planner result
 /* end of lines added by David Chin */
-    const Player*	target;
-    std::vector<RegionPoint>	path;
-    int			pathIndex;
-    float		timerForShot;
-    bool		drivingForward;
-    static std::vector<BzfRegion*>* obstacleList;
+  const Player*	target;
+  std::vector<RegionPoint>	path;
+  int			pathIndex;
+  float		timerForShot;
+  bool		drivingForward;
+  static std::vector<BzfRegion*>* obstacleList;
 };
 
 #endif // BZF_ROBOT_PLAYER_H

@@ -232,7 +232,7 @@ copy "$(BZ_DEPS)\licenses\*" "..\..\bin_$(Configuration)_$(Platform)\licenses\"<
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.\;..\..\include;$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\include\curl;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\src\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\include;$(BZ_DEPS)\output-$(Configuration)-$(PlatformShortName)\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\include\curl;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\output-release-x86\include;C:\Users\simon\source\repos\bzflag\bzflag-dependencies\src\SDL2\include;C:\Users\simon\source\repos\bzflag\yagsbpl;C:\Users\simon\source\repos\bzflag\DOSL-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;WIN32;NDEBUG;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -334,8 +334,26 @@ copy "$(BZ_DEPS)\licenses\*" "..\..\bin_$(Configuration)_$(Platform)\licenses\"<
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\aicore\action.cpp" />
+    <ClCompile Include="..\..\src\aicore\aimath.cpp" />
+    <ClCompile Include="..\..\src\aicore\basesm.cpp" />
+    <ClCompile Include="..\..\src\aicore\core.cpp" />
+    <ClCompile Include="..\..\src\aicore\dectree.cpp" />
+    <ClCompile Include="..\..\src\aicore\kinematic.cpp" />
+    <ClCompile Include="..\..\src\aicore\learning.cpp" />
+    <ClCompile Include="..\..\src\aicore\location.cpp" />
+    <ClCompile Include="..\..\src\aicore\markovsm.cpp" />
+    <ClCompile Include="..\..\src\aicore\qlearning.cpp" />
+    <ClCompile Include="..\..\src\aicore\rules.cpp" />
+    <ClCompile Include="..\..\src\aicore\sm.cpp" />
+    <ClCompile Include="..\..\src\aicore\steering.cpp" />
+    <ClCompile Include="..\..\src\aicore\steerpipe.cpp" />
+    <ClCompile Include="..\..\src\aicore\timing.cpp" />
     <ClCompile Include="..\..\src\bzflag\ActionBinding.cxx" />
+    <ClCompile Include="..\..\src\bzflag\AStarNode.cpp" />
     <ClCompile Include="..\..\src\bzflag\AutoPilot.cxx" />
+    <ClCompile Include="..\..\src\bzflag\dectree.cxx" />
+    <ClCompile Include="..\..\src\bzflag\Pathfinding.cxx" />
     <ClCompile Include="..\..\src\bzflag\ServerListFilterHelpMenu.cxx" />
     <ClCompile Include="..\..\src\bzflag\ServerListFilterMenu.cxx" />
     <ClCompile Include="..\..\src\bzflag\bzflag.cxx">
@@ -914,6 +932,27 @@ copy "$(BZ_DEPS)\licenses\*" "..\..\bin_$(Configuration)_$(Platform)\licenses\"<
     <ResourceCompile Include="..\Version.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\aicore\action.h" />
+    <ClInclude Include="..\..\include\aicore\aicore.h" />
+    <ClInclude Include="..\..\include\aicore\aimath.h" />
+    <ClInclude Include="..\..\include\aicore\basesm.h" />
+    <ClInclude Include="..\..\include\aicore\core.h" />
+    <ClInclude Include="..\..\include\aicore\dectree.h" />
+    <ClInclude Include="..\..\include\aicore\fuzzysm.h" />
+    <ClInclude Include="..\..\include\aicore\kinematic.h" />
+    <ClInclude Include="..\..\include\aicore\learning.h" />
+    <ClInclude Include="..\..\include\aicore\location.h" />
+    <ClInclude Include="..\..\include\aicore\markovsm.h" />
+    <ClInclude Include="..\..\include\aicore\precision.h" />
+    <ClInclude Include="..\..\include\aicore\primitives.h" />
+    <ClInclude Include="..\..\include\aicore\qlearning.h" />
+    <ClInclude Include="..\..\include\aicore\rules.h" />
+    <ClInclude Include="..\..\include\aicore\sm.h" />
+    <ClInclude Include="..\..\include\aicore\steering.h" />
+    <ClInclude Include="..\..\include\aicore\steerpipe.h" />
+    <ClInclude Include="..\..\include\aicore\timing.h" />
+    <ClInclude Include="..\..\src\bzflag\AStarNode.h" />
+    <ClInclude Include="..\..\src\bzflag\dectree.h" />
     <ClInclude Include="..\..\src\bzflag\defaultBZDB.h" />
     <ClInclude Include="..\..\src\bzflag\clientConfig.h" />
     <ClInclude Include="..\..\src\bzflag\AudioMenu.h" />
@@ -957,7 +996,9 @@ copy "$(BZ_DEPS)\licenses\*" "..\..\bin_$(Configuration)_$(Platform)\licenses\"<
     <ClInclude Include="..\..\src\bzflag\MenuDefaultKey.h" />
     <ClInclude Include="..\..\src\bzflag\motd.h" />
     <ClInclude Include="..\..\src\bzflag\NewVersionMenu.h" />
+    <ClInclude Include="..\..\src\bzflag\Obstical_search.h" />
     <ClInclude Include="..\..\src\bzflag\OptionsMenu.h" />
+    <ClInclude Include="..\..\src\bzflag\Pathfinding.h" />
     <ClInclude Include="..\..\src\bzflag\Plan.h" />
     <ClInclude Include="..\..\src\bzflag\Player.h" />
     <ClInclude Include="..\..\src\bzflag\playing.h" />

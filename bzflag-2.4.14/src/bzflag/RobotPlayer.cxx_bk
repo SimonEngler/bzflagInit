@@ -14,6 +14,10 @@
  *
  */
 
+/* lines added by David Chin */
+#define TRACE
+/* end of lines added by David Chin */
+
 // interface header
 #include "RobotPlayer.h"
 
@@ -25,7 +29,21 @@
 #include "Intersect.h"
 #include "TargetingUtils.h"
 
+/* lines added by David Chin */
+#include "playing.h" // needed for numFlags, and controlPanel
+#include "Roster.h" // needed for robots[]
+/* end of lines added by David Chin */
+
 std::vector<BzfRegion*>* RobotPlayer::obstacleList = NULL;
+
+/* lines added by David Chin */
+const float RobotPlayer::CohesionW = 1.0f;
+const float RobotPlayer::SeparationW = 1000.0f;
+const float RobotPlayer::AlignW = 1.0f;
+const float RobotPlayer::PathW = 10.0f;
+TimeKeeper RobotPlayer::tick = TimeKeeper::getTick();
+float RobotPlayer::wanderAzimuth = 0.0f;
+/* end of lines added by David Chin */
 
 RobotPlayer::RobotPlayer(const PlayerId& _id, const char* _name,
 				ServerLink* _server,
@@ -168,7 +186,9 @@ void			RobotPlayer::doUpdate(float dt)
       float maxdistance = targetdistance;
       if (!ShotStrategy::getFirstBuilding(tankRay, -0.5f, maxdistance))
       {
-	shoot=true;
+/* lines modified by David Chin */
+	//shoot=true;
+/* end of lines modified by David Chin */
 	// try to not aim at teammates
 	for (int i=0; i <= World::getWorld()->getCurMaxPlayers(); i++)
 	{
@@ -198,6 +218,15 @@ void			RobotPlayer::doUpdate(float dt)
       }
     }
   }
+/* lines added by David Chin */
+  // drop any flags that are not opponent team flags
+  // that can be dropped (i.e., are not FlagSticky)
+  FlagType* myFlag = getFlag();
+  if (myFlag && (myFlag != Flags::Null) &&
+    (myFlag->endurance != FlagSticky) &&
+    ((myFlag->flagTeam == NoTeam) || (myFlag->flagTeam == getTeam())))
+    serverLink->sendDropFlag(getId(), getPosition());
+/* end of lines added by David Chin */
 }
 
 void			RobotPlayer::doUpdateMotion(float dt)
@@ -268,20 +297,70 @@ void			RobotPlayer::doUpdateMotion(float dt)
 	}
       }
     }
-
+/* lines added/modified by David Chin */
+    /*
     // when we are not evading, follow the path
     if (!evading && dt > 0.0 && pathIndex < (int)path.size()) {
+    */
+    // when we are not evading, head to nearest enemy flag
+    // or if team is already holding an enemy flag, head home
+    // or wander if wandering is 1
+    int wandering = 0;
+    if (!evading && dt > 0.0) {
+      TeamColor myteam = getTeam();
       float distance;
       float v[2];
-      const float* endPoint = path[pathIndex].get();
-      // find how long it will take to get to next path segment
-      v[0] = endPoint[0] - position[0];
-      v[1] = endPoint[1] - position[1];
+      float centerOfMass[3];
+      float cohesionV[2], separationV[3];
+      int numCohesionNeighbors = computeCenterOfMass(BZDBCache::worldSize, centerOfMass);
+      // uncomment out one of the following 2 code sections to get either
+      // lines 1-7: repulsion from center of mass of neighbors
+      // line 9: inverse square law repulsion from each neighbor
+      //float separation[3];
+      //int numSeparationNeighbors = computeCenterOfMass(BZDBCache::tankRadius * 5.0f, separation);
+      //if (numSeparationNeighbors) {
+             // separationV[0] = position[0] - separation[0];
+             // separationV[1] = position[1] - separation[1];
+      //} else
+             // separationV[0] = separationV[1] = 0;
+      // above lines for repulsion from CoM, line below for repulsion from each neighbor
+      int numSeparationNeighbors = computeRepulsion(BZDBCache::tankRadius * 5.0f, separationV);
+      float alignAzimuth;
+      float align[3] = { 0.0f, 0.0f, 0.0f };
+      int numAlignNeighbors = computeAlign(BZDBCache::tankRadius * 15.0f, align, &alignAzimuth);
+      if (numCohesionNeighbors) {
+        cohesionV[0] = centerOfMass[0] - position[0];
+        cohesionV[1] = centerOfMass[1] - position[1];
+      }
+      else
+        cohesionV[0] = cohesionV[1] = 0;
+      float path[3];
+      if (wandering) {
+        float wander = computeWander();
+        path[0] = cosf(alignAzimuth * wander);
+        path[1] = sinf(alignAzimuth * wander);
+      }
+      else if (myTeamHoldingOpponentFlag()) {
+        findHomeBase(myteam, path);
+        path[0] -= position[0];
+        path[1] -= position[1];
+      }
+      else {
+        findOpponentFlag(path);
+        path[0] -= position[0];
+        path[1] -= position[1];
+      }
+      v[0] = CohesionW * cohesionV[0] + SeparationW * separationV[0] + AlignW * align[0] + PathW * path[0];
+      v[1] = CohesionW * cohesionV[1] + SeparationW * separationV[1] + AlignW * align[1] + PathW * path[1];
+      float weightSum = CohesionW + SeparationW + AlignW + PathW;
+      v[0] /= weightSum;
+      v[1] /= weightSum;
       distance = hypotf(v[0], v[1]);
       float tankRadius = BZDBCache::tankRadius;
       // smooth path a little by turning early at corners, might get us stuck, though
-      if (distance <= 2.5f * tankRadius)
-	pathIndex++;
+      //if (distance <= 2.5f * tankRadius)
+	//pathIndex++;
+      /* end of lines added/modified by David Chin */
 
       float segmentAzimuth = atan2f(v[1], v[0]);
       float azimuthDiff = segmentAzimuth - azimuth;
@@ -302,7 +381,7 @@ void			RobotPlayer::doUpdateMotion(float dt)
 	} else {
 	  setDesiredAngVel(azimuthDiff / dt / tankAngVel);
 	}
-      } else {
+	  } else { // fabs(azimuthDiff) <= 0.01
 	drivingForward = true;
 	// tank doesn't turn while moving forward
 	setDesiredAngVel(0.0f);
@@ -505,6 +584,325 @@ void			RobotPlayer::findPath(RegionPriorityQueue& queue,
   }
 }
 
+/**
+ * Return the number of teammates (not including self)
+ * within neighborhoodSize distance of self; also return
+ * their center of mass position (in cmOut)
+ */
+int		RobotPlayer::computeCenterOfMass(float neighborhoodSize, float cmOut[3])
+{
+	cmOut[0] = cmOut[1] = cmOut[2] = 0.0f;
+	const float* mypos = getPosition();
+	int numTeammates = 0;
+	TeamColor myTeam = getTeam();
+#ifdef TRACE
+	char buffer[128];
+	sprintf (buffer, "my (id=%d) team color is %d", getId(), myTeam);
+	controlPanel->addMessage(buffer);
+	sprintf (buffer, "curMaxPlayers() is  %d", World::getWorld()->getCurMaxPlayers());
+	controlPanel->addMessage(buffer);
+#endif
+	for (int i=0; i <= World::getWorld()->getCurMaxPlayers(); i++)
+	{
+		Player* p = NULL;
+		const float* pos; // p's position
+		double distance = 0; // distance from p to this robot
+		if (i < World::getWorld()->getCurMaxPlayers())
+			p = World::getWorld()->getPlayer(i);
+		else
+			p = LocalPlayer::getMyTank();
+
+#ifdef TRACE
+		if(p) sprintf (buffer, "getPlayer(%d), id=%d has team color %d",
+			i, p->getId(), p->getTeam());
+		controlPanel->addMessage(buffer);
+#endif
+		if (p && p->getTeam() == myTeam && p->getId() != getId()) {
+			pos = p->getPosition();
+			double deltax = pos[0] - mypos[0];
+			double deltay = pos[1] - mypos[1];
+			distance = hypotf(deltax,deltay);
+#ifdef TRACE
+			sprintf (buffer, "getPlayer(%d), id=%d has location (%f, %f, %f)",
+				i, p->getId(), pos[0], pos[1], pos[2]);
+			controlPanel->addMessage(buffer);
+			sprintf (buffer, "distance = %f, neighborhood = %f",
+				distance, neighborhoodSize);
+			controlPanel->addMessage(buffer);
+#endif
+			if (distance < neighborhoodSize) {
+				numTeammates++;
+				cmOut[0] += pos[0];
+				cmOut[1] += pos[1];
+				cmOut[2] += pos[2];
+			}
+		}
+	}
+#ifdef TRACE
+	sprintf (buffer, "numTeammates = %d",
+		numTeammates);
+	controlPanel->addMessage(buffer);
+#endif
+	if (numTeammates) {
+		cmOut[0] /= numTeammates;
+		cmOut[1] /= numTeammates;
+		cmOut[2] /= numTeammates;	
+	}
+	return numTeammates;
+}
+
+/**
+ * Return the number of teammates (not including self)
+ * within neighborhoodSize distance of self; also return
+ * the inverse square repulsion of those teammates in repulseOut[3]
+ */
+int		RobotPlayer::computeRepulsion(float neighborhoodSize, float repulseOut[3])
+{
+	repulseOut[0] = repulseOut[1] = repulseOut[2] = 0.0f;
+	const float* mypos = getPosition();
+	int numTeammates = 0;
+	TeamColor myTeam = getTeam();
+#ifdef TRACE
+	char buffer[128];
+	sprintf (buffer, "my (id=%d) team color is %d", getId(), myTeam);
+	controlPanel->addMessage(buffer);
+	sprintf (buffer, "curMaxPlayers() is  %d", World::getWorld()->getCurMaxPlayers());
+	controlPanel->addMessage(buffer);
+#endif
+	for (int i=0; i <= World::getWorld()->getCurMaxPlayers(); i++)
+	{
+		Player* p = NULL;
+		const float* pos; // p's position
+		float direction[3]; // flee direction
+		float distance = 0; // distance from p to this robot
+		if (i < World::getWorld()->getCurMaxPlayers())
+			p = World::getWorld()->getPlayer(i);
+		else
+			p = LocalPlayer::getMyTank();
+
+#ifdef TRACE
+		if(p) sprintf (buffer, "getPlayer(%d), id=%d has team color %d",
+			i, p->getId(), p->getTeam());
+		controlPanel->addMessage(buffer);
+#endif
+		if (p && p->getTeam() == myTeam && p->getId() != getId()) {
+			pos = p->getPosition();
+			direction[0] = mypos[0] - pos[0];
+			direction[1] = mypos[1] - pos[1];
+			distance = hypotf(direction[0],direction[1]);
+			if (distance == 0.0) {
+				distance = 0.0001f; // in case tanks on top of each other
+				direction[0] = float(bzfrand());
+				direction[1] = float(bzfrand());
+			}
+#ifdef TRACE
+			sprintf (buffer, "getPlayer(%d), id=%d has location (%f, %f, %f)",
+				i, p->getId(), pos[0], pos[1], pos[2]);
+			controlPanel->addMessage(buffer);
+			sprintf (buffer, "distance = %f, neighborhood = %f",
+				distance, neighborhoodSize);
+			controlPanel->addMessage(buffer);
+#endif
+			if (distance < neighborhoodSize) {
+				numTeammates++;
+				// normalize to unit vector and inverse square law
+				float dd = distance * distance * distance;
+				repulseOut[0] += direction[0]/dd;
+				repulseOut[1] += direction[1]/dd;
+				repulseOut[2] += direction[2]/dd;
+			}
+		}
+	}
+#ifdef TRACE
+	sprintf (buffer, "numTeammates = %d",
+		numTeammates);
+	controlPanel->addMessage(buffer);
+#endif
+	return numTeammates;
+}
+
+/**
+ * Return the number of teammates (not including self)
+ * within neighborhoodSize distance of self; also return
+ * their average velocity (in avVOut) and their average angle (in avAzimuthOut)
+ */
+int		RobotPlayer::computeAlign(float neighborhoodSize, float avVOut[3], float* avAzimuthOut)
+{
+	avVOut[0] = avVOut[1] = avVOut[2] = 0.0f;
+	const float* mypos = getPosition();
+	int numTeammates = 0;
+	TeamColor myTeam = getTeam();
+	*avAzimuthOut = 0;
+#ifdef TRACE
+	char buffer[128];
+	sprintf (buffer, "my (id=%d) team color is %d", getId(), myTeam);
+	controlPanel->addMessage(buffer);
+	sprintf (buffer, "curMaxPlayers() is  %d", World::getWorld()->getCurMaxPlayers());
+	controlPanel->addMessage(buffer);
+#endif
+	for (int i=0; i <= World::getWorld()->getCurMaxPlayers(); i++)
+	{
+		Player* p = NULL;
+		const float* pos; // position of p
+		const float* v; // velocity of v
+		//const float* azimuth; // angle of v
+		double distance = 0; // distance from p to this robot
+		if (i < World::getWorld()->getCurMaxPlayers())
+			p = World::getWorld()->getPlayer(i);
+		else
+			p = LocalPlayer::getMyTank();
+
+#ifdef TRACE
+		if(p) sprintf (buffer, "getPlayer(%d), id=%d has team color %d",
+			i, p->getId(), p->getTeam());
+		controlPanel->addMessage(buffer);
+#endif
+		if (p && p->getTeam() == myTeam && p->getId() != getId()) {
+			pos = p->getPosition();
+			double deltax = pos[0] - mypos[0];
+			double deltay = pos[1] - mypos[1];
+			distance = hypotf(deltax,deltay);
+			v = p->getVelocity();
+#ifdef TRACE
+			sprintf (buffer, "getPlayer(%d), id=%d has velocity (%f, %f, %f)",
+				i, p->getId(), v[0], v[1], v[2]);
+			controlPanel->addMessage(buffer);
+			sprintf (buffer, "distance = %f, neighborhood = %f",
+				distance, neighborhoodSize);
+			controlPanel->addMessage(buffer);
+#endif
+			if (distance < neighborhoodSize) {
+				numTeammates++;
+				avVOut[0] += v[0];
+				avVOut[1] += v[1];
+				avVOut[2] += v[2];
+				*avAzimuthOut += p->getAngle();
+			}
+		}
+	}
+#ifdef TRACE
+	sprintf (buffer, "numTeammates = %d",
+		numTeammates);
+	controlPanel->addMessage(buffer);
+#endif
+	if (numTeammates) {
+		avVOut[0] /= numTeammates;
+		avVOut[1] /= numTeammates;
+		avVOut[2] /= numTeammates;
+		*avAzimuthOut /= numTeammates;
+	}
+	return numTeammates;
+}
+
+/*
+ * Return the location (in location[3]) of the first home base for team color teamColor
+ */
+void		RobotPlayer::findHomeBase(TeamColor teamColor, float location[3])
+{
+	World* world = World::getWorld();
+	if(!world->allowTeamFlags()) return;
+	const float* baseParms = world->getBase(teamColor, 0);
+#ifdef TRACE2
+	char buffer[128];
+	sprintf (buffer, "Base for color %d is at (%f, %f, %f)",
+		teamColor, baseParms[0], baseParms[1], baseParms[2]);
+	controlPanel->addMessage(buffer);
+#endif
+	location[0] = baseParms[0]; 
+	location[1] = baseParms[1];
+	location[2] = baseParms[2];
+}
+
+/*
+ * Return true if any player on my team
+ * is holding an opponent team flag, and false otherwise
+ */
+bool		RobotPlayer::myTeamHoldingOpponentFlag(void)
+{
+	TeamColor myTeamColor = getTeam();
+	if (!World::getWorld()->allowTeamFlags()) return false;
+	for (int i = 0; i < numFlags; i++) {
+		Flag& flag = World::getWorld()->getFlag(i);
+		TeamColor flagTeamColor = flag.type->flagTeam;
+		if (flagTeamColor != NoTeam && flagTeamColor != myTeamColor
+			&& flag.status == FlagOnTank) {
+			PlayerId ownerId = flag.owner;
+#ifdef TRACE2
+			char buffer[128];
+			sprintf (buffer, "Looking for a Player with id=%d",
+				ownerId);
+			controlPanel->addMessage(buffer);
+#endif
+			Player* p = lookupLocalPlayer(ownerId);
+			if (p && (p->getTeam() == myTeamColor)) {
+#ifdef TRACE2
+				sprintf (buffer, "Player id=%d, TeamColor=%d holds flag %d, robots[0]=%d",
+					p->getId(), p->getTeam(), myTeamColor, robots[0]->getId());
+				controlPanel->addMessage(buffer);
+#endif
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+/*
+ * Find any opponent flag and return its location
+ */
+void		RobotPlayer::findOpponentFlag(float location[3])
+{
+	TeamColor myTeamColor = getTeam();
+	if (!World::getWorld()->allowTeamFlags()) return;
+	for (int i = 0; i < numFlags; i++) {
+		Flag& flag = World::getWorld()->getFlag(i);
+		TeamColor flagTeamColor = flag.type->flagTeam;
+		if (flagTeamColor != NoTeam && flagTeamColor != myTeamColor) {
+			location[0] = flag.position[0];
+			location[1] = flag.position[1];
+			location[2] = flag.position[2];
+#ifdef TRACE2
+			char buffer[128];
+			sprintf (buffer, "Found a flag at (%f, %f, %f)",
+				location[0], location[1], location[2]);
+			controlPanel->addMessage(buffer);
+#endif
+			return;
+		}
+	}
+}
+
+/*
+ * Compute a random wander angle between -0.05 and 0.05
+ */
+float 		RobotPlayer::computeWander(void)
+{
+  TimeKeeper now = TimeKeeper::getTick();
+  if (tick == now) {
+    return wanderAzimuth;
+  }
+  else {
+    tick = now;
+    return wanderAzimuth = 1.0f + (float(bzfrand()) - 0.5f) * 0.1f;
+  }
+}
+
+/*
+ * Given a PlayerId, find the corresponding local Player
+ */
+Player*		RobotPlayer::lookupLocalPlayer(PlayerId id)
+{
+	for (int i=0; i <= World::getWorld()->getCurMaxPlayers(); i++)
+	{
+		Player* p = NULL;
+		if (i < World::getWorld()->getCurMaxPlayers())
+			p = World::getWorld()->getPlayer(i);
+		else
+			p = LocalPlayer::getMyTank();
+		if (p && p->getId() == id) return p;
+	}
+	return NULL;
+}
 
 // Local Variables: ***
 // mode: C++ ***

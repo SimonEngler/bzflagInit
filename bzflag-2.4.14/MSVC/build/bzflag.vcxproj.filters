@@ -265,9 +265,33 @@
     <ClCompile Include="..\..\src\bzflag\ServerMenu.cxx">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\bzflag\stars.cxx">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="..\..\src\bzflag\Pathfinding.cxx">
+      <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\bzflag\AStarNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\bzflag\dectree.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\bzflag\stars.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aicore\action.cpp" />
+    <ClCompile Include="..\..\src\aicore\aimath.cpp" />
+    <ClCompile Include="..\..\src\aicore\basesm.cpp" />
+    <ClCompile Include="..\..\src\aicore\core.cpp" />
+    <ClCompile Include="..\..\src\aicore\dectree.cpp" />
+    <ClCompile Include="..\..\src\aicore\kinematic.cpp" />
+    <ClCompile Include="..\..\src\aicore\learning.cpp" />
+    <ClCompile Include="..\..\src\aicore\location.cpp" />
+    <ClCompile Include="..\..\src\aicore\markovsm.cpp" />
+    <ClCompile Include="..\..\src\aicore\qlearning.cpp" />
+    <ClCompile Include="..\..\src\aicore\rules.cpp" />
+    <ClCompile Include="..\..\src\aicore\sm.cpp" />
+    <ClCompile Include="..\..\src\aicore\steering.cpp" />
+    <ClCompile Include="..\..\src\aicore\steerpipe.cpp" />
+    <ClCompile Include="..\..\src\aicore\timing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\bzflag\AudioMenu.h">
@@ -537,6 +561,37 @@
     <ClInclude Include="..\..\src\bzflag\WorldPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\bzflag\Pathfinding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\bzflag\Obstical_search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\bzflag\AStarNode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\bzflag\dectree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aicore\action.h" />
+    <ClInclude Include="..\..\include\aicore\aicore.h" />
+    <ClInclude Include="..\..\include\aicore\aimath.h" />
+    <ClInclude Include="..\..\include\aicore\basesm.h" />
+    <ClInclude Include="..\..\include\aicore\core.h" />
+    <ClInclude Include="..\..\include\aicore\dectree.h" />
+    <ClInclude Include="..\..\include\aicore\fuzzysm.h" />
+    <ClInclude Include="..\..\include\aicore\kinematic.h" />
+    <ClInclude Include="..\..\include\aicore\learning.h" />
+    <ClInclude Include="..\..\include\aicore\location.h" />
+    <ClInclude Include="..\..\include\aicore\markovsm.h" />
+    <ClInclude Include="..\..\include\aicore\precision.h" />
+    <ClInclude Include="..\..\include\aicore\primitives.h" />
+    <ClInclude Include="..\..\include\aicore\qlearning.h" />
+    <ClInclude Include="..\..\include\aicore\rules.h" />
+    <ClInclude Include="..\..\include\aicore\sm.h" />
+    <ClInclude Include="..\..\include\aicore\steering.h" />
+    <ClInclude Include="..\..\include\aicore\steerpipe.h" />
+    <ClInclude Include="..\..\include\aicore\timing.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\bzflag.ico">
